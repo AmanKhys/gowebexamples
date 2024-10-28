@@ -1,0 +1,13 @@
+---handler function 
+func (w http.ResponseWriter, r *http.Request)
+
+http.ListenAndServe(":80", nil)
+
+---Serving static assets
+fs := http.FileServer(http.Dir("static/"))
+
+http.Handle("/static/", http.StripPrefix("/static/", fs))
+
+---accept connections
+http.ListenAndServe(":80", nil)
+
